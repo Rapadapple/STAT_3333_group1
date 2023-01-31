@@ -1,42 +1,54 @@
 ---
-title: "HW1"
-author: "Kevin Sheard"
-date: "`r Sys.Date()`"
-output: word_document
+title: "HW1 Group 1.rmd"
+author: "My Tran, Kevin Sheard, Pooja Patel" 
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+header-includes:
+  - \usepackage{amsmath}
+date: "2023-01-31"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Supposed the following data: 0, 2, 0, 2, 0 are observed from the distribution with pmf
 
-p(x = 0; θ) = (1−θ)/3;
+  Supposed the following data: 0, 2, 0, 2, 0 are observed from the distribution with pmf
 
-p(x = 1; θ) = 1/3;
-
-p(x = 2; θ) = (1+θ)/3;
-
-and 0, otherwise. 
-
-Find the MLE of θ. Calculate the MLE of
-
-P(X = 2).
-
-L(θ) = p(x=0;θ)p(x=2;θ)p(x=0;θ)p(x=2;θ)p(x=0;θ)
-
-L(θ) = p(x=0;θ)^3 * p(x=2;θ)^2
-
-L(θ) = ((1−θ)/3)^3 * ((1+θ)/3)^2
-
-lnL(θ) = 3(ln(1-θ)-3) + 2(ln(1+θ)-3)
-
-dlnL(θ)/dθ = -3/(1-θ) + 2/(1+θ)
-
+$$
+  \begin{aligned}
+    \\\mathrm{p}(X = 0; \theta) = \frac{1-\theta}{3}\\
+    \\\mathrm{p}(X = 1; \theta) = \frac{1}{3}\\
+    \\\mathrm{p}(X = 2; \theta) = \frac{1+\theta}{3};\\
+  \end{aligned}
+$$
+  
+  and 0, otherwise.
+  
+  Find the MLE of $\theta$. Calculate the MLE of $\mathrm{P}(X = 2)$.
+  
+  __Solution:__
+  
+$$
+  \begin{aligned}
+    \\\mathrm{L}(\theta) = \mathrm{p}(X = 0; \theta)\mathrm{p}(X = 2; \theta)\mathrm{p}(X = 0; \theta)\mathrm{p}(X = 2; \theta)\mathrm{p}(X = 0; \theta)\\
+    \\\Rightarrow \mathrm{L}(\theta) = (\mathrm{p}(X = 0; \theta))^3(\mathrm{p}(X = 2;    \theta))^2\\
+    \\\Rightarrow \mathrm{L}(\theta) = (\frac{1-\theta}{3})^3 * (\frac{1+\theta}{3})^2\\
+    \\\Rightarrow \ln(\mathrm{L}(\theta)) = 3*(\ln(\frac{1-\theta}{3}))+ 2*(\ln(\frac{1+\theta}{3}))\\
+    \\\Rightarrow \displaystyle \frac{\partial \ln(\mathrm{L}(\theta))}{\partial \theta} = \frac{-3}{1-\theta} + \frac{2}{1+\theta}\\ 
+  \end{aligned}
+$$
+  
 ```{r}
 uniroot(function(x) -3/(1-x) + 2/(1+x), c(-0.999,0.999)) $root
 ```
+  
+  MLE for $\hat{\theta}$ is -0.2
+  
+  $\hat{\theta}$ for $\mathrm{P}(X = 2)$ is $\frac{1+\hat{\theta}}{3}$ = $\frac{1+(-0.2)}{3}$ = $\frac{0.8}{3} \approx 0.2\overline6$
 
-MLE for θ is -0.2
 
-MLE for p(X=2)
+
